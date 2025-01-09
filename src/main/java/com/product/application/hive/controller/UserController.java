@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.product.application.hive.dao.LoginResponse;
 import com.product.application.hive.dto.LoginRequest;
 import com.product.application.hive.model.User;
 import com.product.application.hive.service.UserService;
@@ -37,7 +38,15 @@ public class UserController {
 		try {
 			if(userService.getUserByUsername(request.getUsername()).isPresent()) {
 				User loggedInUser = userService.loginUser(request.getUsername(), request.getPassword());
-				return new ResponseEntity<>(loggedInUser, HttpStatus.OK);
+//				return new ResponseEntity<>(loggedInUser, HttpStatus.OK);
+				
+				LoginResponse response = new LoginResponse();
+				response.setUserId(loggedInUser.getUserId());
+				response.setUsername(loggedInUser.getUsername());
+				response.setFirstName(loggedInUser.getFirstName());
+				response.setLastName(loggedInUser.getLastName());
+				
+				return new ResponseEntity<>(response, HttpStatus.OK);
 			}else {
 				return new ResponseEntity<>("Error while login user", HttpStatus.BAD_REQUEST);
 			}
