@@ -28,6 +28,5 @@ Welcome to the **Product APIs** repository! This project provides a set of RESTf
 
 ### **1️⃣ Clone the Repository**
 ```sh
-hskjdas
 git clone https://github.com/Akashsharmahere/product-apis.git
 cd product-apis
